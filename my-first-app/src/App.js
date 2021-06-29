@@ -8,11 +8,9 @@ function App() {
   const initialRender = useRef(true);
 
   useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false;
-    } else {
-      alert("Teraz był efekt!!");
-    }
+    initialRender.current
+      ? (initialRender.current = false)
+      : alert("Teraz był efekt!!");
   }, [title]);
 
   return (
