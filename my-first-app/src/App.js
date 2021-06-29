@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./index.css";
+import MyName from "./MyName";
+import React, { useEffect, useRef, useState } from "react";
 
 function App() {
+  const [title, setTitle] = useState("Pierwszy tytuł strony");
+
+  const initialRender = useRef(true);
+
+  useEffect(() => {
+    initialRender.current
+      ? (initialRender.current = false)
+      : alert("Teraz był efekt!!");
+  }, [title]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MyName name="Michał" />
+      <button onClick={() => setTitle("Drugi tytuł strony")}>
+        Zmień tytuł
+      </button>
+      <button onClick={() => setTitle("Trzeci tytuł strony")}>
+        Zmień tytuł ponownie
+      </button>
+      <h1>{title}</h1>
     </div>
   );
 }
